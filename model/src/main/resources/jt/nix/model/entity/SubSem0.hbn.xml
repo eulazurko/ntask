@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="jt.nix.model.entity.SubSem" table="semesters_subjects">
+        <id name="id" type="java.lang.Long" column="sub_semID">
+            <generator class="native"/>
+        </id>
+
+        <many-to-one name="subject" column="subjectID" class="jt.nix.model.entity.Subject" not-null="true"/>
+        <many-to-one name="semester" column="semesterID" class="jt.nix.model.entity.Semester" not-null="true"/>
+
+
+    </class>
+</hibernate-mapping>

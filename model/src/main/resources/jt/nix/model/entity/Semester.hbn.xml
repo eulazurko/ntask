@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="jt.nix.model.entity.Semester" table="semester">
+        <id name="id" type="java.lang.Long" column="semesterID">
+            <generator class="native"/>
+        </id>
+
+        <property name="semesterWeeks"/>
+
+        <set name="subjects" table="semesters_subjects" cascade="save-update" lazy="true" inverse="true">
+            <key>
+                <column name="semesterID" not-null="true"/>
+            </key>
+            <one-to-many class="jt.nix.model.entity.SubSem"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

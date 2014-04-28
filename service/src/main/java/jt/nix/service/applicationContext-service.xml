@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <aop:config>
+        <aop:pointcut id="transactDefault" expression="within(jt.nix.service.transactional..*)"/>
+        <aop:advisor advice-ref="transact" pointcut-ref="transactDefault"/>
+    </aop:config>
+
+    <tx:advice id="transact">
+        <tx:attributes>
+            <tx:method name="get*" rollback-for="java.lang.Exception" read-only="true"/>
+            <tx:method name="save*" rollback-for="java.lang.Exception"/>
+            <tx:method name="delete*" rollback-for="java.lang.Exception"/>
+
+        </tx:attributes>
+
+    </tx:advice>
+
+    <bean id="group0TransactService" class="jt.nix.service.transactional.Group0TransactService">
+        <constructor-arg ref="group0HibernateDao"/>
+
+    </bean>
+
+
+
+</beans>

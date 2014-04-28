@@ -19,7 +19,7 @@ public class Group0Controller extends MultiActionController{
 
         ModelAndView modelAndView0 = new ModelAndView("group0/list");
         modelAndView0.addObject("group0List", group0Service.getAll());
-        return modelAndView0 ;
+        return  modelAndView0 ;
     }
 
 }
